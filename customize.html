@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <title>Customize Your Own - Douaa Nails</title>
+</head>
+
+<body class="customize-page">
+    <nav>
+        <div class="logo">Douaa Nails</div>
+        <ul class="links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="customize.html">Customize</a></li>
+        </ul>
+
+        <div class="icons">
+            <a href="https://instagram.com/yourpage" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://tiktok.com/@yourpage" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://facebook.com/yourpage" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://wa.me/213XXXXXXXXX" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+    </nav>
+
+    <main class="customize-container">
+        <h1 class="page-title">Personalisez vos Ongles</h1>
+        
+        <div class="customizer-layout">
+            <!-- Left Side: Preview -->
+            <div class="preview-section">
+                <!-- Interactive Finger (Existing) -->
+                <div id="fingerPreview" class="finger-container">
+                    <div class="finger-base"></div>
+                    <div id="previewNail" class="nail round color-pink size-m"></div>
+                </div>
+
+                <!-- Image Based Preview (New) -->
+                <div id="imagePreview" class="image-preview-container" style="display: none;">
+                    <img id="shapeImage" src="round.webp" alt="Nail Shape Reference">
+                    <!-- Overlay to demo color on one nail -->
+                    <div id="colorDemoOverlay" class="nail-color-demo"></div>
+                </div>
+
+                <div class="preview-label">Aperçu en temps réel</div>
+            </div>
+
+            <!-- Right Side: Controls -->
+            <div class="controls-section">
+                <div class="control-group">
+                    <h3>1. Choisissez la Forme</h3>
+                    <div class="shape-grid">
+                        <button onclick="updateNailShape('round')" class="shape-btn active">Round</button>
+                        <button onclick="updateNailShape('almond')" class="shape-btn">Almond</button>
+                        <button onclick="updateNailShape('square')" class="shape-btn">Square</button>
+                        <button onclick="updateNailShape('oval')" class="shape-btn">Oval</button>
+                        <button onclick="updateNailShape('ballerina')" class="shape-btn">Ballerina</button>
+                        <button onclick="updateNailShape('stiletto')" class="shape-btn">Stiletto</button>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <h3>2. Choisissez la Taille</h3>
+                    <div class="size-options">
+                        <label><input type="radio" name="size" value="s" onclick="updateNailSize('s')"> S</label>
+                        <label><input type="radio" name="size" value="m" checked onclick="updateNailSize('m')"> M</label>
+                        <label><input type="radio" name="size" value="l" onclick="updateNailSize('l')"> L</label>
+                        <label><input type="radio" name="size" value="xl" onclick="updateNailSize('xl')"> XL</label>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <h3>3. Choisissez la Couleur</h3>
+                    <div class="color-grid">
+                        <div class="color-swatch active" style="background-color: #ff69b4;" onclick="updateNailColor('#ff69b4', this)"></div>
+                        <div class="color-swatch" style="background-color: #ff0000;" onclick="updateNailColor('#ff0000', this)"></div>
+                        <div class="color-swatch" style="background-color: #c2185b;" onclick="updateNailColor('#c2185b', this)"></div>
+                        <div class="color-swatch" style="background-color: #fce4ec;" onclick="updateNailColor('#fce4ec', this)"></div>
+                        <div class="color-swatch" style="background-color: #d4af37;" onclick="updateNailColor('#d4af37', this)"></div>
+                        <div class="color-swatch" style="background-color: #4b0082;" onclick="updateNailColor('#4b0082', this)"></div>
+                        <div class="color-swatch" style="background-color: #000000;" onclick="updateNailColor('#000000', this)"></div>
+                        <div class="color-swatch" style="background-color: #ffffff; border: 1px solid #ddd;" onclick="updateNailColor('#ffffff', this)"></div>
+                    </div>
+                    <div class="custom-color-input">
+                        <span>Couleur personnalisée :</span>
+                        <input type="color" id="colorPicker" oninput="updateNailColor(this.value)">
+                    </div>
+                </div>
+
+                <div class="order-summary">
+                    <p>Prix estimé : <strong id="customPrice">1200 Da</strong></p>
+                    <button class="btn-primary buy-now-btn" onclick="sendOrder()">Passer la commande</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

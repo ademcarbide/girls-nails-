@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <title>Order - Douaa Nails</title>
+</head>
+
+<body class="product-page">
+    <nav>
+        <div class="logo">Douaa Nails</div>
+        <ul class="links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="customize.html">Customize</a></li>
+        </ul>
+
+        <div class="icons">
+            <a href="https://instagram.com/yourpage" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://tiktok.com/@yourpage" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://facebook.com/yourpage" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://wa.me/213XXXXXXXXX" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+    </nav>
+
+    <main class="product-detail-container">
+        <div class="product-detail-layout">
+            <div class="product-image-section">
+                <img id="mainProductImg" src="red.webp" alt="Product Image">
+                <h2 id="productTitle">Red Nails</h2>
+            </div>
+
+            <div class="order-form-section">
+                <h3>Personnalisez votre commande</h3>
+                <form id="orderForm">
+                    <div class="form-group">
+                        <label for="modele">Modèle :</label>
+                        <select id="modele" onchange="updatePrice()">
+                            <option value="1200">Modèle simple (1200 DA)</option>
+                            <option value="1400">Design léger (1400 DA)</option>
+                            <option value="1600">La french | Babyboomer (1600 DA)</option>
+                            <option value="2000">Nail art | 3D (À partir de 2000 DA)</option>
+                            <option value="2500">Pack mains et pieds (2500 DA)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="forme">Forme :</label>
+                        <select id="forme">
+                            <option value="round">Round</option>
+                            <option value="almond">Almond</option>
+                            <option value="square">Square</option>
+                            <option value="oval">Oval</option>
+                            <option value="ballerina">Ballerina</option>
+                            <option value="stiletto">Stiletto</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="longueur">Longueur :</label>
+                        <select id="longueur">
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="couleur">Couleur :</label>
+                        <input type="text" id="couleur" placeholder="Précisez la couleur souhaitée">
+                    </div>
+
+                    <div class="form-divider">Coordonnées</div>
+
+                    <div class="form-group">
+                        <input type="text" id="nom" placeholder="Nom et Prénom" required>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="tel" id="tel" placeholder="Numéro de téléphone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <textarea id="adresse" placeholder="Adresse complète | Wilaya" required></textarea>
+                    </div>
+
+                    <div class="price-display">
+                        <span>Total :</span>
+                        <span id="totalPrice">1200 Da</span>
+                    </div>
+
+                    <button type="submit" class="btn-primary buy-now-btn">Buy Now</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
