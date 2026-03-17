@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<!-- 
+  ================================================================
+  PROJECT: cherry Nails Product Detail Page
+  DESCRIPTION: Allows users to provide sizing and contact details.
+  DYNAMIC: Content updates based on URL parameters (name, img).
+  ================================================================
+-->
 <html lang="en">
 
 <head>
@@ -8,48 +15,56 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Poppins:wght@300;400;600&display=swap"
         rel="stylesheet">
-    <title>Order - Douaa Nails</title>
+    <title>Order - cherry Nails</title>
 </head>
 
 <body class="product-page">
+    <!-- NAVIGATION BAR (Synced with index.html) -->
     <nav>
-        <div class="logo">Douaa Nails</div>
+        <a href="index.html" style="text-decoration: none; color: inherit;">
+            <div class="logo">
+                <span class="logo-main">cherry</span>
+                <span class="logo-sub">Dnails</span>
+            </div>
+        </a>
         <ul class="links">
             <li><a href="index.html">Home</a></li>
             <li><a href="shop.html">Shop</a></li>
             <li><a href="#">About</a></li>
-            <li><a href="customize.html">Customize</a></li>
         </ul>
 
         <div class="icons">
-            <a href="https://instagram.com/yourpage" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <!-- Instagram: Directed to specific profile requested by user -->
+            <a href="https://www.instagram.com/cherryd.nails?igsh=eDNrOWJ6Z2h6bXJi" target="_blank"><i
+                    class="fa-brands fa-instagram"></i></a>
             <a href="https://tiktok.com/@yourpage" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
             <a href="https://facebook.com/yourpage" target="_blank"><i class="fa-brands fa-facebook"></i></a>
             <a href="https://wa.me/213XXXXXXXXX" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
         </div>
     </nav>
 
+    <!-- 
+      ORDER SECTION
+      - Left side: Product Image & Title (updated by JS)
+      - Right side: Order Form
+    -->
     <main class="product-detail-container">
         <div class="product-detail-layout">
+            
+            <!-- PRODUCT PREVIEW -->
             <div class="product-image-section">
+                <!-- ID "mainProductImg" is targeted by script.js to change based on the URL -->
                 <img id="mainProductImg" src="red.webp" alt="Product Image">
+                <!-- ID "productTitle" is targeted by script.js to change based on the URL -->
                 <h2 id="productTitle">Red Nails</h2>
             </div>
 
+            <!-- CUSTOMIZATION & CONTACT FORM -->
             <div class="order-form-section">
                 <h3>Personnalisez votre commande</h3>
                 <form id="orderForm">
-                    <div class="form-group">
-                        <label for="modele">Modèle :</label>
-                        <select id="modele" onchange="updatePrice()">
-                            <option value="1200">Modèle simple (1200 DA)</option>
-                            <option value="1400">Design léger (1400 DA)</option>
-                            <option value="1600">La french | Babyboomer (1600 DA)</option>
-                            <option value="2000">Nail art | 3D (À partir de 2000 DA)</option>
-                            <option value="2500">Pack mains et pieds (2500 DA)</option>
-                        </select>
-                    </div>
 
+                    <!-- Choice of Shape -->
                     <div class="form-group">
                         <label for="forme">Forme :</label>
                         <select id="forme">
@@ -62,6 +77,7 @@
                         </select>
                     </div>
 
+                    <!-- Choice of Size -->
                     <div class="form-group">
                         <label for="longueur">Longueur :</label>
                         <select id="longueur">
@@ -72,13 +88,9 @@
                         </select>
                     </div>
 
-                    <div class="form-group">
-                        <label for="couleur">Couleur :</label>
-                        <input type="text" id="couleur" placeholder="Précisez la couleur souhaitée">
-                    </div>
-
                     <div class="form-divider">Coordonnées</div>
 
+                    <!-- Client Details -->
                     <div class="form-group">
                         <input type="text" id="nom" placeholder="Nom et Prénom" required>
                     </div>
@@ -91,6 +103,7 @@
                         <textarea id="adresse" placeholder="Adresse complète | Wilaya" required></textarea>
                     </div>
 
+                    <!-- Static Price Display -->
                     <div class="price-display">
                         <span>Total :</span>
                         <span id="totalPrice">1200 Da</span>
@@ -102,6 +115,7 @@
         </div>
     </main>
 
+    <!-- Handle dynamic parameters and form submission -->
     <script src="script.js"></script>
 </body>
 

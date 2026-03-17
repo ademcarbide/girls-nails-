@@ -1,34 +1,70 @@
 <!DOCTYPE html>
+<!-- 
+  ================================================================
+  PROJECT: cherry Nails Landing Page
+  DESCRIPTION: This is the main homepage for the website. 
+  It features a premium hero section and a product collection grid.
+  DEVELOPMENT NOTE: Designed with a luxury pink aesthetic.
+  ================================================================
+-->
 <html lang="en">
 
 <head>
+    <!-- Meta tags for character encoding and responsive design -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Link to external CSS stylesheet -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Font Awesome for social media and utility icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Google Fonts: Sacramento (Heading) and Poppins (Body) -->
     <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Poppins:wght@300;400;600&display=swap"
         rel="stylesheet">
-    <title>Douaa Nails | Premium Nail Design</title>
+
+    <title>cherry Nails | Premium Nail Design</title>
 </head>
 
 <body>
+    <!-- 
+      NAVIGATION BAR
+      - Fixed to the top via CSS
+      - Contains brand logo, navigation links, and social icons
+    -->
     <nav>
-        <div class="logo">girls Nails</div>
+        <!-- Brand identity logo -->
+        <a href="index.html" style="text-decoration: none; color: inherit;">
+            <div class="logo">
+                <span class="logo-main">cherry</span>
+                <span class="logo-sub">Dnails</span>
+            </div>
+        </a>
+
+        <!-- Main site navigation links -->
         <ul class="links">
             <li><a href="index.html">Home</a></li>
             <li><a href="shop.html">Shop</a></li>
             <li><a href="#">About</a></li>
-            <li><a href="customize.html">Customize</a></li>
         </ul>
 
+        <!-- Social media links with icons -->
         <div class="icons">
-            <a href="https://instagram.com/yourpage" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <!-- Instagram: Directed to specific profile requested by user -->
+            <a href="https://www.instagram.com/cherryd.nails?igsh=eDNrOWJ6Z2h6bXJi" target="_blank"><i
+                    class="fa-brands fa-instagram"></i></a>
             <a href="https://tiktok.com/@yourpage" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
             <a href="https://facebook.com/yourpage" target="_blank"><i class="fa-brands fa-facebook"></i></a>
             <a href="https://wa.me/213XXXXXXXXX" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
         </div>
     </nav>
 
+    <!-- 
+      HERO SECTION
+      - Full-screen impact area with background image
+      - Contains primary call-to-action (Shop Now)
+    -->
     <header class="hero">
         <div class="hero-content">
             <h1>New Fashion <br> New Designs Everyday</h1>
@@ -37,68 +73,46 @@
         </div>
     </header>
 
+    <!-- 
+      SHOP SECTION
+      - Displays the product collection in a responsive grid (4 columns)
+      - Each card links to the product detail page with dynamic URL parameters
+    -->
     <section id="shop" class="shop-container">
         <h2 class="shop-title">Our Collection</h2>
         <div class="product-grid" id="productGrid">
-            <!-- Product 1 -->
-            <a href="product.html?name=red+nails&img=red.webp" class="product-card-link">
+
+            <!-- PRODUCT CARD 1: couleur unie -->
+            <a href="product.html?name=couleur+unie&img=couleur+unie+1.webp" class="product-card-link"
+                id="prod-1-link">
                 <div class="product-card">
-                    <div class="product-img">
-                        <img src="red.webp" alt="Nail Polish" id="prod-1-img">
+                    <div class="product-img" style="position: relative;">
+                        <img src="couleur unie 1.webp" alt="Nail Polish" id="prod-1-img">
+                        <button class="slide-btn" onclick="toggleProductImage(event, 1)"
+                            style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); background: rgba(255, 255, 255, 0.9); border: none; border-radius: 50%; width: 35px; height: 35px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: center; transition: all 0.3s;">
+                            <i class="fas fa-chevron-right" style="color: #c2185b; font-size: 1.2rem;"></i>
+                        </button>
                     </div>
                     <div class="product-info">
-                        <h3>red nails </h3>
-                        <p class="price">1500 Da</p>
-                        <div class="rating">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <!-- Repeat for 12 products -->
-            <!-- For brevity in this call, I'll generate the grid with JS or repeat a few here -->
-            <!-- Product 2 -->
-            <a href="product.html?name=Velvet+Lavender&img=pink.webp" class="product-card-link">
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="pink.webp" alt="Nail Polish" id="prod-2-img">
-                    </div>
-                    <div class="product-info">
-                        <h3>Velvet Lavender</h3>
+                        <h3 id="prod-1-title">couleur unie</h3>
                         <p class="price">1200 Da</p>
                         <div class="rating">
                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                class="fas fa-star"></i><i class="far fa-star"></i>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <!-- Product 3 -->
-            <a href="product.html?name=Bubblegum+Shine&img=pink.webp" class="product-card-link">
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="pink.webp" alt="Nail Polish" id="prod-3-img">
-                    </div>
-                    <div class="product-info">
-                        <h3>Bubblegum Shine</h3>
-                        <p class="price">1300 Da</p>
-                        <div class="rating">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
                                 class="fas fa-star"></i><i class="fas fa-star"></i>
                         </div>
                     </div>
                 </div>
             </a>
-            <!-- Product 4 -->
-            <a href="product.html?name=Sweet+Peony&img=pink.webp" class="product-card-link">
+
+            <!-- PRODUCT CARD 2: la french -->
+            <a href="product.html?name=la+french&img=la+french.webp" class="product-card-link">
                 <div class="product-card">
                     <div class="product-img">
-                        <img src="pink.webp" alt="Nail Polish" id="prod-4-img">
+                        <img src="la french.webp" alt="la french">
                     </div>
                     <div class="product-info">
-                        <h3>Sweet Peony</h3>
-                        <p class="price">1400 Da</p>
+                        <h3>la french</h3>
+                        <p class="price">1600 Da</p>
                         <div class="rating">
                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
                                 class="fas fa-star"></i><i class="far fa-star"></i>
@@ -106,46 +120,15 @@
                     </div>
                 </div>
             </a>
-            <!-- Product 5 -->
-            <a href="product.html?name=Blush+Satin&img=pink.webp" class="product-card-link">
+
+            <!-- PRODUCT CARD 3: babyboomer -->
+            <a href="product.html?name=babyboomer&img=babyboomer.webp" class="product-card-link">
                 <div class="product-card">
                     <div class="product-img">
-                        <img src="pink.webp" alt="Nail Polish" id="prod-5-img">
+                        <img src="babyboomer.webp" alt="babyboomer">
                     </div>
                     <div class="product-info">
-                        <h3>Blush Satin</h3>
-                        <p class="price">1500 Da</p>
-                        <div class="rating">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <!-- Product 6 -->
-            <a href="product.html?name=Candy+Floss&img=pink.webp" class="product-card-link">
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="pink.webp" alt="Nail Polish" id="prod-6-img">
-                    </div>
-                    <div class="product-info">
-                        <h3>Candy Floss</h3>
-                        <p class="price">1250 Da</p>
-                        <div class="rating">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <!-- Product 7 -->
-            <a href="product.html?name=Rose+Quartz&img=pink.webp" class="product-card-link">
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="pink.webp" alt="Nail Polish" id="prod-7-img">
-                    </div>
-                    <div class="product-info">
-                        <h3>Rose Quartz</h3>
+                        <h3>babyboomer</h3>
                         <p class="price">1600 Da</p>
                         <div class="rating">
                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
@@ -154,47 +137,16 @@
                     </div>
                 </div>
             </a>
-            <!-- Product 8 -->
-            <a href="product.html?name=Petal+Soft&img=pink.webp" class="product-card-link">
+
+            <!-- PRODUCT CARD 4: 3d nail art -->
+            <a href="product.html?name=3d+nail+art&img=3d+nail+art.webp" class="product-card-link">
                 <div class="product-card">
                     <div class="product-img">
-                        <img src="pink.webp" alt="Nail Polish" id="prod-8-img">
+                        <img src="3d nail art.webp" alt="3d nail art">
                     </div>
                     <div class="product-info">
-                        <h3>Petal Soft</h3>
-                        <p class="price">1100 Da</p>
-                        <div class="rating">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                class="far fa-star"></i><i class="far fa-star"></i>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <!-- Product 9 -->
-            <a href="product.html?name=Flamingo+Pink&img=pink.webp" class="product-card-link">
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="pink.webp" alt="Nail Polish" id="prod-9-img">
-                    </div>
-                    <div class="product-info">
-                        <h3>Flamingo Pink</h3>
-                        <p class="price">1450 Da</p>
-                        <div class="rating">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <!-- Product 10 -->
-            <a href="product.html?name=Coral+Mist&img=pink.webp" class="product-card-link">
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="pink.webp" alt="Nail Polish" id="prod-10-img">
-                    </div>
-                    <div class="product-info">
-                        <h3>Coral Mist</h3>
-                        <p class="price">1350 Da</p>
+                        <h3>3d nail art</h3>
+                        <p class="price">2000 Da</p>
                         <div class="rating">
                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
                                 class="fas fa-star"></i><i class="far fa-star"></i>
@@ -202,31 +154,16 @@
                     </div>
                 </div>
             </a>
-            <!-- Product 11 -->
-            <a href="product.html?name=Sugar+Plum&img=pink.webp" class="product-card-link">
+
+            <!-- PRODUCT CARD 5: cat eye -->
+            <a href="product.html?name=cat+eye&img=cat+eye.webp" class="product-card-link">
                 <div class="product-card">
                     <div class="product-img">
-                        <img src="pink.webp" alt="Nail Polish" id="prod-11-img">
+                        <img src="cat eye.webp" alt="cat eye">
                     </div>
                     <div class="product-info">
-                        <h3>Sugar Plum</h3>
-                        <p class="price">1550 Da</p>
-                        <div class="rating">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <!-- Product 12 -->
-            <a href="product.html?name=Glow+Rose&img=pink.webp" class="product-card-link">
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="pink.webp" alt="Nail Polish" id="prod-12-img">
-                    </div>
-                    <div class="product-info">
-                        <h3>Glow Rose</h3>
-                        <p class="price">1700 Da</p>
+                        <h3>cat eye</h3>
+                        <p class="price">1800 Da</p>
                         <div class="rating">
                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
                                 class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -237,6 +174,7 @@
         </div>
     </section>
 
+    <!-- Global interactions -->
     <script src="script.js"></script>
 </body>
 
