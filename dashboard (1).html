@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>cherry Dnails | Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  :root {
+    --pink: #ff69b4;
+    --deep-pink: #c2185b;
+    --light-pink: #fce4ec;
+    --dark: #1a0a10;
+    --card: #2a1020;
+    --border: rgba(255,105,180,0.2);
+    --text: #f8e8f0;
+    --muted: #b08090;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  /* LOGIN SCREEN */
+  #loginScreen {
+    position: fixed; inset: 0;
+    background: var(--dark);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 9999;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .login-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 3rem 2.5rem;
+    width: 340px;
+    text-align: center;
+  }
+  .login-logo { font-family: 'Sacramento', cursive; font-size: 3.5rem; color: var(--pink); margin-bottom: 0.2rem; }
+  .login-sub { font-family: 'Poppins', sans-serif; font-size: 0.7rem; letter-spacing: 3px; color: var(--muted); text-transform: uppercase; margin-bottom: 2rem; }
+  .login-box input {
+    width: 100%; padding: 12px 16px;
+    background: rgba(255,105,180,0.08);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: var(--text);
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    outline: none;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+    text-align: center;
+  }
+  .login-box input:focus { border-color: var(--pink); }
+  .login-btn {
+    width: 100%; padding: 12px;
+    background: var(--pink);
+    color: #fff;
+    border: none; border-radius: 12px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem; font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .login-btn:hover { background: var(--deep-pink); }
+  .login-error { color: #ff6b6b; font-size: 0.85rem; margin-top: 0.5rem; display: none; }
+
+  /* MAIN DASHBOARD */
+  body {
+    background: var(--dark);
+    font-family: 'Poppins', sans-serif;
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  header {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; z-index: 100;
+  }
+  .header-logo { font-family: 'Sacramento', cursive; font-size: 2.2rem; color: var(--pink); }
+  .header-sub { font-size: 0.65rem; letter-spacing: 3px; color: var(--muted); text-transform: uppercase; }
+  .logout-btn {
+    background: transparent; border: 1px solid var(--border);
+    color: var(--muted); padding: 6px 16px; border-radius: 8px;
+    font-family: 'Poppins', sans-serif; font-size: 0.8rem; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .logout-btn:hover { border-color: var(--pink); color: var(--pink); }
+
+  .main { padding: 2rem; max-width: 1200px; margin: 0 auto; }
+
+  /* STATS */
+  .stats {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem;
+  }
+  .stat-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 1.25rem 1.5rem;
+    transition: transform 0.2s;
+  }
+  .stat-card:hover { transform: translateY(-2px); }
+  .stat-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .stat-value { font-size: 2rem; font-weight: 600; color: var(--text); }
+  .stat-card.total .stat-value { color: var(--pink); }
+  .stat-card.confirmed .stat-value { color: #4ade80; }
+  .stat-card.pending .stat-value { color: #facc15; }
+  .stat-card.returned .stat-value { color: #f87171; }
+
+  /* SEARCH & FILTERS */
+  .controls {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 1.25rem 1.5rem;
+    display: flex; gap: 1rem; align-items: center;
+    margin-bottom: 1.5rem; flex-wrap: wrap;
+  }
+  .search-wrap { position: relative; flex: 1; min-width: 200px; }
+  .search-wrap i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 0.9rem; }
+  .controls input, .controls select {
+    background: rgba(255,105,180,0.07);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    padding: 9px 12px;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+  .search-wrap input { padding-left: 36px; }
+  .controls input:focus, .controls select:focus { border-color: var(--pink); }
+  .controls select { min-width: 160px; flex: 0; cursor: pointer; }
+  .controls select option { background: #2a1020; }
+  .clear-btn {
+    background: transparent; border: 1px solid var(--border);
+    color: var(--muted); padding: 9px 16px; border-radius: 10px;
+    font-family: 'Poppins', sans-serif; font-size: 0.85rem; cursor: pointer;
+    white-space: nowrap; transition: all 0.2s;
+  }
+  .clear-btn:hover { border-color: var(--pink); color: var(--pink); }
+
+  /* TABLE */
+  .table-wrap {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; overflow: hidden;
+  }
+  .table-header {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .table-title { font-size: 0.9rem; font-weight: 600; color: var(--text); }
+  .order-count { font-size: 0.8rem; color: var(--muted); }
+
+  table { width: 100%; border-collapse: collapse; }
+  thead th {
+    padding: 12px 16px; text-align: left;
+    font-size: 0.72rem; font-weight: 600;
+    color: var(--muted); text-transform: uppercase; letter-spacing: 1px;
+    border-bottom: 1px solid var(--border);
+  }
+  tbody tr {
+    border-bottom: 1px solid rgba(255,105,180,0.07);
+    transition: background 0.15s;
+  }
+  tbody tr:hover { background: rgba(255,105,180,0.05); }
+  tbody tr:last-child { border-bottom: none; }
+  tbody td { padding: 14px 16px; font-size: 0.85rem; color: var(--text); vertical-align: middle; }
+  .td-muted { color: var(--muted); font-size: 0.8rem; }
+
+  .badge {
+    display: inline-block; padding: 4px 12px;
+    border-radius: 999px; font-size: 0.75rem; font-weight: 500;
+    cursor: pointer; border: none; font-family: 'Poppins', sans-serif;
+    transition: opacity 0.2s;
+  }
+  .badge:hover { opacity: 0.8; }
+  .badge.confirmed { background: rgba(74,222,128,0.15); color: #4ade80; border: 1px solid rgba(74,222,128,0.3); }
+  .badge.pending   { background: rgba(250,204,21,0.15);  color: #facc15; border: 1px solid rgba(250,204,21,0.3); }
+  .badge.returned  { background: rgba(248,113,113,0.15); color: #f87171; border: 1px solid rgba(248,113,113,0.3); }
+
+  .del-btn {
+    background: transparent; border: none; color: var(--muted);
+    cursor: pointer; font-size: 0.9rem; padding: 4px 8px;
+    border-radius: 6px; transition: all 0.2s;
+  }
+  .del-btn:hover { color: #f87171; background: rgba(248,113,113,0.1); }
+
+  .empty-state {
+    text-align: center; padding: 4rem 2rem;
+    color: var(--muted); font-size: 0.9rem;
+  }
+  .empty-state i { font-size: 2.5rem; display: block; margin-bottom: 1rem; opacity: 0.4; }
+
+  @media (max-width: 768px) {
+    .stats { grid-template-columns: repeat(2,1fr); }
+    .controls { flex-direction: column; }
+    .controls select { min-width: 100%; }
+    thead th:nth-child(4), tbody td:nth-child(4),
+    thead th:nth-child(5), tbody td:nth-child(5) { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo">cherry</div>
+    <div class="login-sub">Dnails — Dashboard</div>
+    <input type="password" id="pwdInput" placeholder="Enter password" onkeydown="if(event.key==='Enter') tryLogin()" />
+    <button class="login-btn" onclick="tryLogin()">Enter Dashboard</button>
+    <div class="login-error" id="loginError">Incorrect password. Try again.</div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboardScreen" style="display:none;">
+  <header>
+    <div>
+      <div class="header-logo">cherry</div>
+      <div class="header-sub">Order Dashboard</div>
+    </div>
+    <button class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+  </header>
+
+  <div class="main">
+
+    <!-- STATS -->
+    <div class="stats">
+      <div class="stat-card total">
+        <div class="stat-label">Total Orders</div>
+        <div class="stat-value" id="statTotal">0</div>
+      </div>
+      <div class="stat-card confirmed">
+        <div class="stat-label">Confirmed</div>
+        <div class="stat-value" id="statConfirmed">0</div>
+      </div>
+      <div class="stat-card pending">
+        <div class="stat-label">En Attente</div>
+        <div class="stat-value" id="statPending">0</div>
+      </div>
+      <div class="stat-card returned">
+        <div class="stat-label">Retour</div>
+        <div class="stat-value" id="statReturned">0</div>
+      </div>
+    </div>
+
+    <!-- CONTROLS -->
+    <div class="controls">
+      <div class="search-wrap">
+        <i class="fas fa-search"></i>
+        <input type="text" id="searchInput" placeholder="Search by name, phone or wilaya..." oninput="renderOrders()" />
+      </div>
+      <select id="filterStatus" onchange="renderOrders()">
+        <option value="">All statuses</option>
+        <option value="pending">En Attente</option>
+        <option value="confirmed">Confirmed</option>
+        <option value="returned">Retour</option>
+      </select>
+      <select id="filterWilaya" onchange="renderOrders()">
+        <option value="">All wilayas</option>
+      </select>
+      <button class="clear-btn" onclick="clearFilters()"><i class="fas fa-times"></i> Clear</button>
+    </div>
+
+    <!-- TABLE -->
+    <div class="table-wrap">
+      <div class="table-header">
+        <span class="table-title">Orders</span>
+        <span class="order-count" id="orderCount">0 orders</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Customer</th>
+            <th>Phone</th>
+            <th>Wilaya / Address</th>
+            <th>Product</th>
+            <th>Forme / Size</th>
+            <th>Price</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="ordersBody"></tbody>
+      </table>
+      <div class="empty-state" id="emptyState" style="display:none;">
+        <i class="fas fa-box-open"></i>
+        No orders found.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const PASSWORD = "douaamalik";
+
+function tryLogin() {
+  const val = document.getElementById('pwdInput').value;
+  if (val === PASSWORD) {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('dashboardScreen').style.display = 'block';
+    loadDashboard();
+  } else {
+    document.getElementById('loginError').style.display = 'block';
+    document.getElementById('pwdInput').value = '';
+  }
+}
+
+function logout() {
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('dashboardScreen').style.display = 'none';
+  document.getElementById('pwdInput').value = '';
+}
+
+function getOrders() {
+  return JSON.parse(localStorage.getItem('orders')) || [];
+}
+
+function saveOrders(orders) {
+  localStorage.setItem('orders', JSON.stringify(orders));
+}
+
+function loadDashboard() {
+  populateWilayaFilter();
+  renderOrders();
+}
+
+function populateWilayaFilter() {
+  const orders = getOrders();
+  const wilayas = [...new Set(orders.map(o => (o.customerAddress || '').split('|').pop().trim()).filter(Boolean))];
+  const sel = document.getElementById('filterWilaya');
+  sel.innerHTML = '<option value="">All wilayas</option>';
+  wilayas.forEach(w => {
+    const opt = document.createElement('option');
+    opt.value = w; opt.textContent = w;
+    sel.appendChild(opt);
+  });
+}
+
+function renderOrders() {
+  const orders  = getOrders();
+  const search  = document.getElementById('searchInput').value.toLowerCase();
+  const status  = document.getElementById('filterStatus').value;
+  const wilaya  = document.getElementById('filterWilaya').value.toLowerCase();
+
+  let filtered = orders.filter(o => {
+    const name    = (o.customerName    || '').toLowerCase();
+    const phone   = (o.customerPhone   || '').toLowerCase();
+    const address = (o.customerAddress || '').toLowerCase();
+    const matchSearch = !search || name.includes(search) || phone.includes(search) || address.includes(search);
+    const matchStatus = !status || (o.status || 'pending') === status;
+    const matchWilaya = !wilaya || address.includes(wilaya);
+    return matchSearch && matchStatus && matchWilaya;
+  });
+
+  // Stats (always from all orders)
+  const all = orders;
+  document.getElementById('statTotal').textContent     = all.length;
+  document.getElementById('statConfirmed').textContent = all.filter(o => o.status === 'confirmed').length;
+  document.getElementById('statPending').textContent   = all.filter(o => !o.status || o.status === 'pending').length;
+  document.getElementById('statReturned').textContent  = all.filter(o => o.status === 'returned').length;
+
+  const tbody = document.getElementById('ordersBody');
+  tbody.innerHTML = '';
+
+  document.getElementById('emptyState').style.display = filtered.length === 0 ? 'block' : 'none';
+  document.getElementById('orderCount').textContent = filtered.length + ' order' + (filtered.length !== 1 ? 's' : '');
+
+  filtered.slice().reverse().forEach((order, i) => {
+    const globalIdx = orders.indexOf(order);
+    const status = order.status || 'pending';
+    const statusLabel = status === 'confirmed' ? 'Confirmed' : status === 'returned' ? 'Retour' : 'En Attente';
+
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="td-muted">#${orders.length - globalIdx}</td>
+      <td><strong>${esc(order.customerName || '—')}</strong></td>
+      <td class="td-muted">${esc(order.customerPhone || '—')}</td>
+      <td class="td-muted" style="max-width:160px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${esc(order.customerAddress || '—')}</td>
+      <td>${esc(order.product || '—')}</td>
+      <td class="td-muted">${esc(order.forme || '—')} / ${esc(order.longueur || '—')}</td>
+      <td style="color:var(--pink);font-weight:600;">${esc(order.price || '—')}</td>
+      <td class="td-muted" style="font-size:0.75rem;">${esc(order.date || '—')}</td>
+      <td>
+        <button class="badge ${status}" onclick="cycleStatus(${globalIdx})">${statusLabel}</button>
+      </td>
+      <td>
+        <button class="del-btn" onclick="deleteOrder(${globalIdx})" title="Delete"><i class="fas fa-trash"></i></button>
+      </td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+function cycleStatus(idx) {
+  const orders = getOrders();
+  const current = orders[idx].status || 'pending';
+  const next = current === 'pending' ? 'confirmed' : current === 'confirmed' ? 'returned' : 'pending';
+  orders[idx].status = next;
+  saveOrders(orders);
+  renderOrders();
+}
+
+function deleteOrder(idx) {
+  if (!confirm('Delete this order?')) return;
+  const orders = getOrders();
+  orders.splice(idx, 1);
+  saveOrders(orders);
+  populateWilayaFilter();
+  renderOrders();
+}
+
+function clearFilters() {
+  document.getElementById('searchInput').value = '';
+  document.getElementById('filterStatus').value = '';
+  document.getElementById('filterWilaya').value = '';
+  renderOrders();
+}
+
+function esc(str) {
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// Auto-refresh every 30 seconds for new orders
+setInterval(() => {
+  if (document.getElementById('dashboardScreen').style.display !== 'none') {
+    populateWilayaFilter();
+    renderOrders();
+  }
+}, 30000);
+</script>
+</body>
+</html>
